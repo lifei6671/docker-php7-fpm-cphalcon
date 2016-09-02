@@ -25,9 +25,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
 	&& docker-php-ext-install pdo \
 	&& docker-php-ext-install pdo_mysql \
-	&& rm -rf /usr/src/php/ext \
 	&& apt-get -y autoremove \ 
-	&& apt-get -y autoclean \ 
+	&& apt-get -y autoclean 
 	
     
 WORKDIR /usr/src/php/ext/
