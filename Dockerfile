@@ -53,7 +53,7 @@ RUN set -xe && \
 		
 	
 RUN  apt-get remove git \
-	apt-get clean \
+	&& apt-get clean \
 	&& make clean \
 	&& apt-get autoremove
 	
