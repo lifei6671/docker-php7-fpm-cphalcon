@@ -55,6 +55,6 @@ RUN set -xe && \
 RUN  apt-get -y remove --purge git
 RUN apt-get -y remove --purge make 
 RUN apt-get clean 
-RUN apt-get autoremove
-RUN apt-get autoclean
+RUN apt-get -y autoremove
+RUN apt-get -y autoclean
 	
