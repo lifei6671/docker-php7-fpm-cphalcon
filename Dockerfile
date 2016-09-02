@@ -26,7 +26,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install bz2 \
     && docker-php-ext-install ctype \
     && docker-php-ext-install mbstring \
-    && docker-php-ext-install zip 
+    && docker-php-ext-install zip \
+	&& docker-php-ext-install pdo \
+	&& docker-php-ext-install pdo_mysql
     
 WORKDIR /usr/src/php/ext/
 RUN git clone -b php7 https://github.com/php-memcached-dev/php-memcached.git
@@ -51,11 +53,11 @@ RUN set -xe && \
         #mv phalcon-devtools-${PHALCON_VERSION} /usr/local/phalcon-devtools && \
         #ln -s /usr/local/phalcon-devtools/phalcon.php /usr/local/bin/phalcon
 		
-RUN cp /usr/local/etc/php/conf.d/phalcon.ini phalcon.ini
-#RUN docker-php-ext-enable phalcon
-#RUN apt-get -y remove --purge git
-#RUN apt-get -y remove --purge make 
-#RUN apt-get clean 
-#RUN apt-get -y autoremove
-#RUN apt-get -y autoclean
+
+RUN apt-get -y remove --purge git \ &&
+	apt-get -y remove --purge make \ &&
+	apt-get clean \ &&
+	apt-get -y autoremove \ &&
+    apt-get -y autoclean \ &&
+	rm -rf /var/cache/apt/archives
 	
