@@ -53,8 +53,8 @@ RUN set -xe && \
         #ln -s /usr/local/phalcon-devtools/phalcon.php /usr/local/bin/phalcon
 
 #Composer
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php \
+	&& mv composer.phar /usr/local/bin/composer
 
 # PHP config
 ADD conf/php.ini /usr/local/etc/php/php.ini
