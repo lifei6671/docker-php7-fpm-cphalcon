@@ -55,5 +55,6 @@ RUN apt-get -y remove --purge git \
 	&& apt-get clean \ 
 	&& apt-get -y autoremove \ 
 	&& apt-get -y autoclean \ 
-	&& rm -rf /var/cache/apt/archives
+	&& rm -rf /var/cache/apt/archives \
+	&& rm -rf /usr/src/php/ext
 	
