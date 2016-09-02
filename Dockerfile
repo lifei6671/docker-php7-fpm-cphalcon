@@ -51,8 +51,8 @@ RUN set -xe && \
         mv phalcon-devtools-${PHALCON_VERSION} /usr/local/phalcon-devtools && \
         ln -s /usr/local/phalcon-devtools/phalcon.php /usr/local/bin/phalcon
 		
-	
-RUN  apt-get -y remove --purge git
+RUN docker-php-ext-install phalcon
+RUN apt-get -y remove --purge git
 RUN apt-get -y remove --purge make 
 RUN apt-get clean 
 RUN apt-get -y autoremove
