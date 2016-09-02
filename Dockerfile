@@ -24,16 +24,22 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install zip \
 	&& docker-php-ext-install pdo \
-	&& docker-php-ext-install pdo_mysql
+	&& docker-php-ext-install pdo_mysql \
+	&& rm -rf /usr/src/php/ext \
+	&& rm -rf /var/cache/apt/archives \
+	&& apt-get -y autoremove \ 
+	&& apt-get -y autoclean \ 
+	
     
 WORKDIR /usr/src/php/ext/
-RUN git clone -b php7 https://github.com/php-memcached-dev/php-memcached.git
-RUN git clone -b php7 https://github.com/phpredis/phpredis.git 
-
-RUN docker-php-ext-configure php-memcached \
+RUN git clone -b php7 https://github.com/php-memcached-dev/php-memcached.git \
+	&& docker-php-ext-configure php-memcached \
 	&& docker-php-ext-install php-memcached \
+	&& rm -rf php-memcached
+	&& RUN git clone -b php7 https://github.com/phpredis/phpredis.git \
 	&& docker-php-ext-configure phpredis \
-	&& docker-php-ext-install phpredis
+	&& docker-php-ext-install phpredis \
+	&& rm -rf phpredis
 
 ENV PHALCON_VERSION=3.0.1
 
@@ -49,12 +55,3 @@ RUN set -xe && \
         #mv phalcon-devtools-${PHALCON_VERSION} /usr/local/phalcon-devtools && \
         #ln -s /usr/local/phalcon-devtools/phalcon.php /usr/local/bin/phalcon
 		
-
-RUN apt-get -y remove --purge git \ 
-	&& apt-get -y remove --purge make \ 
-	&& apt-get clean \ 
-	&& apt-get -y autoremove \ 
-	&& apt-get -y autoclean \ 
-	&& rm -rf /var/cache/apt/archives \
-	&& rm -rf /usr/src/php/ext
-	
