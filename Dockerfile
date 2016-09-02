@@ -33,7 +33,7 @@ WORKDIR /usr/src/php/ext/
 RUN git clone -b php7 https://github.com/php-memcached-dev/php-memcached.git \
 	&& docker-php-ext-configure php-memcached \
 	&& docker-php-ext-install php-memcached \
-	&& rm -rf php-memcached
+	&& rm -rf php-memcached \
 	&& RUN git clone -b php7 https://github.com/phpredis/phpredis.git \
 	&& docker-php-ext-configure phpredis \
 	&& docker-php-ext-install phpredis \
