@@ -52,8 +52,9 @@ RUN set -xe && \
         ln -s /usr/local/phalcon-devtools/phalcon.php /usr/local/bin/phalcon
 		
 	
-RUN  apt-get remove git \
-	&& apt-get clean \
-	&& make clean \
-	&& apt-get autoremove
+RUN  apt-get -y remove --purge git
+RUN apt-get -y remove --purge make 
+RUN apt-get clean 
+RUN apt-get autoremove
+RUN apt-get autoclean
 	
