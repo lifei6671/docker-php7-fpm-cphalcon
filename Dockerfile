@@ -28,9 +28,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install zip 
     
-
-RUN git clone -b php7 https://github.com/php-memcached-dev/php-memcached.git /usr/src/php/ext/
-RUN git clone -b php7 https://github.com/phpredis/phpredis.git /usr/src/php/ext/
+WORKDIR /usr/src/php/ext/
+RUN git clone -b php7 https://github.com/php-memcached-dev/php-memcached.git
+RUN git clone -b php7 https://github.com/phpredis/phpredis.git 
 
 RUN docker-php-ext-configure php-memcached \
 	&& docker-php-ext-install php-memcached \
