@@ -2,10 +2,6 @@ FROM daocloud.io/library/php:7.0.10-fpm
 
 MAINTAINER Minho <longfei6671@163.com>
 
-#COPY php-memcached /usr/src/php/ext/php-memcached
-#COPY phpredis /usr/src/php/ext/phpredis
-#COPY cphalcon /usr/src/php/ext/cphalcon
-
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -54,10 +50,10 @@ RUN set -xe && \
         #ln -s /usr/local/phalcon-devtools/phalcon.php /usr/local/bin/phalcon
 		
 
-RUN apt-get -y remove --purge git \ &&
-	apt-get -y remove --purge make \ &&
-	apt-get clean \ &&
-	apt-get -y autoremove \ &&
-    apt-get -y autoclean \ &&
-	rm -rf /var/cache/apt/archives
+RUN apt-get -y remove --purge git \ 
+	&& apt-get -y remove --purge make \ 
+	&& apt-get clean \ 
+	&& apt-get -y autoremove \ 
+	&& apt-get -y autoclean \ 
+	&& rm -rf /var/cache/apt/archives
 	
