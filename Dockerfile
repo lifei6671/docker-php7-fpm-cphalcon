@@ -2,6 +2,10 @@ FROM daocloud.io/library/php:7.0.10-fpm
 
 MAINTAINER Minho <longfei6671@163.com>
 
+# PHP config
+#ADD conf/php.ini /usr/local/etc/php/php.ini
+ADD conf/www.conf /usr/local/etc/php-fpm.d/www.conf
+
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -25,6 +29,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
 	&& docker-php-ext-install pdo \
 	&& docker-php-ext-install pdo_mysql \
+	&& docker-php-ext-install opcache \
 	&& apt-get -y autoremove \ 
 	&& apt-get -y autoclean 
 	
@@ -56,8 +61,7 @@ RUN set -xe && \
 RUN curl -sS https://getcomposer.org/installer | php \
 	&& mv composer.phar /usr/local/bin/composer
 
-# PHP config
-ADD conf/php.ini /usr/local/etc/php/php.ini
-ADD conf/www.conf /usr/local/etc/php-fpm.d/www.conf
-		
+
+RUN sed -i 'a opcache.huge_code_pages=1\'
+
 EXPOSE 9000
