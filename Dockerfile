@@ -3,7 +3,7 @@ FROM daocloud.io/library/php:7.0.10-fpm
 MAINTAINER Minho <longfei6671@163.com>
 
 # PHP config
-#ADD conf/php.ini /usr/local/etc/php/php.ini
+ADD conf/php.ini /usr/local/etc/php/php.ini
 ADD conf/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 RUN apt-get update && apt-get install -y \
@@ -60,8 +60,5 @@ RUN set -xe && \
 #Composer
 RUN curl -sS https://getcomposer.org/installer | php \
 	&& mv composer.phar /usr/local/bin/composer
-
-
-RUN sed -i 'a opcache.huge_code_pages=1\' /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 
 EXPOSE 9000
