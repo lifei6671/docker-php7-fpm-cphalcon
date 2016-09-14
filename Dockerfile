@@ -62,6 +62,6 @@ RUN curl -sS https://getcomposer.org/installer | php \
 	&& mv composer.phar /usr/local/bin/composer
 
 
-RUN sed -i 'a opcache.huge_code_pages=1\' /usr/local/etc/php/conf.d/opcache.ini
+RUN sed -i 'a opcache.huge_code_pages=1\' /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 
 EXPOSE 9000
