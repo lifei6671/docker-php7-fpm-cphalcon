@@ -1,4 +1,4 @@
-FROM daocloud.io/library/php:7.1-fpm
+FROM daocloud.io/library/php:7.0.10-fpm
 
 MAINTAINER Minho <longfei6671@163.com>
 
